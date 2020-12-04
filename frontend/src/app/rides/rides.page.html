@@ -1,18 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>Rodadas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content color="dark">
+  <ion-card *ngFor="let ride of rides | async" color="light">
     <img src="https://ionicframework.com/docs/demos/api/card/madison.jpg" />
     <ion-card-header>
-      <ion-card-subtitle>Destination</ion-card-subtitle>
-      <ion-card-title>Madison, WI</ion-card-title>
+      <ion-card-subtitle>{{ride.start}}</ion-card-subtitle>
+      <ion-card-title>{{ride.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
     </ion-card-content>
   </ion-card>
 
