@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { timingSafeEqual } from 'crypto';
 import { Observable } from 'rxjs';
 import { Ride } from 'src/models/ride';
 import { RideService } from 'src/services/ride';
@@ -15,7 +16,21 @@ export class RidesPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getRides();
+  }
+
+  getRides() {
     this.rides = this.rideService.getAll();
+  }
+
+  delete(id) {
+    this.rideService.delete(id).subscribe(() => {
+      alert('Rodada eliminada con éxito')
+      this.getRides();
+    }, (err) => {
+      alert('No se pudo eliminar la rodada')
+      console.log(err);
+    })
   }
 
 }
