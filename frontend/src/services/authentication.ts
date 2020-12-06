@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Ride } from 'src/models/ride';
+import { Credential } from 'src/models/credentials';
 
 @Injectable()
-export class RideService {
+export class AuthenticationService {
   private url = 'http://localhost:1337/user';
   constructor (
     private http: HttpClient
