@@ -4,7 +4,7 @@ module.exports = async (req, res, next) => {
   }
   const token = req.headers.authorization;
   const decodedToken = AuthenticationService.JWTVerify(token);
-  const user = await User.find({id: decodedToken.user});
+  const user = await User.findOne({id: decodedToken.user});
   if(!user) {
     return next({err: 'Unauthorized'});
   }

@@ -16,12 +16,13 @@ module.exports = {
   signup: async function (req, res) {
     try {
       const schema = joi.object().keys({
+        fullName: joi.string().required(),
         email: joi.string().required().email(),
         password: joi.string().required()
       });
-      const {email, password} = await schema.validateAsync(req.allParams());
+      const {fullName, email, password} = await schema.validateAsync(req.allParams());
       const hashPassword = await bcrypt.hash(password, saltRound); 
-      const user = await User.create({email, password: hashPassword}).fetch();
+      const user = await User.create({fullName, email, password: hashPassword}).fetch();
       return res.ok(user);
     } catch (err) {
       if(err.name === 'ValidationError'){
@@ -46,7 +47,7 @@ module.exports = {
         return res.notFound({err: 'User not found'});
       }
       const comparedPassword = await bcrypt.compare(password, user.password);
-      const token = AuthenticationService.JWTIssuer({user: user.id}, '1 day')
+      const token = AuthenticationService.JWTIssuer({user: user.id}, '1 day');
       return (comparedPassword ? res.ok({token}): res.badRequest({err: 'Unauthorized'}));
     } catch (err) {
       if(err.name === 'ValidationError'){
