@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Ingresar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <ion-list>
+    <ion-item color="dark">
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="credential.email" type="email"></ion-input>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>Contraseña</ion-label>
+      <ion-input [(ngModel)]="credential.pasword" type="password"></ion-input>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>Confirmar Contraseña</ion-label>
+      <ion-input [(ngModel)]="credential.passwordConfirm" type="password"></ion-input>
+    </ion-item>
+    <ion-button (click)="login()" class="ion-activable" expand="block">Ingresar</ion-button>
+  </ion-list>
+</ion-content>

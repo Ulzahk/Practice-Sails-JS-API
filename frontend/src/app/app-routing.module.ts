@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'ride/:id',
     loadChildren: () => import('./ride/ride.module').then( m => m.RidePageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
 ];
 
